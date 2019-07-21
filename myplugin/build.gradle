@@ -2,10 +2,13 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 repositories {
-    mavenCentral()
+    google()
+    jcenter()
 }
 
 dependencies {
+    compile 'com.android.tools.build:gradle:3.4.0'
+    compile group: 'org.javassist', name: 'javassist', version: '3.23.1-GA'
     compile gradleApi()//gradle sdk
     compile localGroovy()//groovy sdk
     compile fileTree(dir: 'libs', include: ['*.jar'])

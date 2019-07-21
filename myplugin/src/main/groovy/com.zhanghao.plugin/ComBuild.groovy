@@ -11,6 +11,7 @@ class ComBuild implements Plugin<Project> {
     String compileModule = "app"
     @Override
     void apply(Project project) {
+        project.extensions.create("combuild",ComExtension)
         String taskNames = project.gradle.startParameter.taskNames.toString()
         System.out.println("taskNames is " + taskNames)
         String module = project.path.replace(":", "")
@@ -47,7 +48,7 @@ class ComBuild implements Plugin<Project> {
             System.out.println("apply plugin is " + 'com.android.application')
             if (assembleTask.isAssemble && module.equals(compileModule)) {
                 compileComponents(assembleTask, project)
-                //project.android.registerTransform(new ComCodeTransform(project))
+                project.android.registerTransform(new ComCodeTransform(project))
             }
         } else {
             project.apply plugin: 'com.android.library'
